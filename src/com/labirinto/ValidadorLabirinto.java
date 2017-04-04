@@ -4,6 +4,12 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Classe com validador de labirintos.
+ * A classe não pode ser instanciada, pois possui um construtor privado e apenas um método publico.
+ * @author Juliano Montini
+ * @since 2017
+ */
 public class ValidadorLabirinto {
 	
 	private static final String regexElementos = "^*[^MPES]$";
@@ -12,6 +18,13 @@ public class ValidadorLabirinto {
 	
 	private ValidadorLabirinto(){}
 
+	/**
+	 * Verifica se as linhas de um labirinto são válidas. O método não possui nenhum retorno, porém se 
+	 * houver algum dado inválido, uma excessão será lançada.
+	 * @param linhasLabirinto Lista com as linhas do labirinto ( em forma de String )
+	 * @throws Exception se a quantidade de elementos por linha for inválida, 
+	 * conter elementos que não sejam: E S M P ou, entrada ou saída não estiverem nas extremidades.
+	 */
 	public static void validaLabirinto(List<String> linhasLabirinto) throws Exception{
 		verificaDimensoes(linhasLabirinto);
 		verificaElementos(linhasLabirinto);
