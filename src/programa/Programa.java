@@ -13,6 +13,10 @@ public class Programa {
 			pilha.adicionar(Integer.valueOf(20));
 			pilha.adicionar(Integer.valueOf(30));
 			pilha.adicionar(Integer.valueOf(40));
+			pilha.remover();
+			pilha.remover();
+			pilha.remover();
+			pilha.remover();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
