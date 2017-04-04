@@ -8,11 +8,15 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.coordenadas.Coordenada;
+
 public class Labirinto {
 	
-	private Character posicoes[][];
+	private Coordenada posicoes[][];
 	private int quantidadeLinhas;
 	private int quantidadeColunas;
+	private Coordenada entrada;
+	private Coordenada saida;
 
 	/**
 	 * Recebe o caminho de um arquivo txt, valida se é um labirinto valido, então devolve a instancia de um labirinto
@@ -24,13 +28,13 @@ public class Labirinto {
 		
 	}
 	
-	private Character[][] carregaLabirinto(String caminho)throws Exception{
+	private Coordenada[][] carregaLabirinto(String caminho)throws Exception{
 		
 		List<String> linhasLabirinto = new ArrayList<String>();
 		File file = new File(caminho);
 		Scanner scan = new Scanner(file);
 		char[][] arrayPosicoes;
-		Character[][] retorno;
+		Coordenada[][] retorno;
 		
 		while(scan.hasNextLine()){
 			linhasLabirinto.add(scan.nextLine());
@@ -44,7 +48,7 @@ public class Labirinto {
 		this.quantidadeColunas = linhasLabirinto.get(0).length();
 		
 		arrayPosicoes = new char[this.quantidadeLinhas][this.quantidadeColunas];
-		retorno = new Character[this.quantidadeLinhas][this.quantidadeColunas];
+		retorno = new Coordenada[this.quantidadeLinhas][this.quantidadeColunas];
 		
 		for(int i = 0; i < linhasLabirinto.size(); i++){
 			arrayPosicoes[i] = linhasLabirinto.get(i).toCharArray();
@@ -52,14 +56,18 @@ public class Labirinto {
 		
 		for(int i = 0; i < arrayPosicoes.length; i++){
 			for(int j = 0; j < arrayPosicoes[i].length; j++){
-				retorno[i][j] = Character.valueOf(arrayPosicoes[i][j]);
+				retorno[i][j] = new Coordenada(i,j,Character.valueOf(arrayPosicoes[i][j]));
+				if(arrayPosicoes[i][j] == "E".charAt(0))
+					this.entrada = retorno[i][j];
+				if(arrayPosicoes[i][j] == "S".charAt(0))
+					this.saida = retorno[i][j];
 			}
 		}
 		
 		return retorno;
 	}
 	
-	public Character[][] getPosicoes() {
+	public Coordenada[][] getPosicoes() {
 		return posicoes;
 	}
 
@@ -71,6 +79,14 @@ public class Labirinto {
 		return quantidadeColunas;
 	}
 	
+	public Coordenada getEntrada() {
+		return entrada;
+	}
+
+	public Coordenada getSaida() {
+		return saida;
+	}
+
 	@Override
 	public String toString(){
 		
@@ -79,7 +95,7 @@ public class Labirinto {
 		
 		for(int i = 0; i < quantidadeLinhas; i++){
 			for(int j = 0; j < quantidadeColunas; j++){
-				retorno += this.posicoes[i][j];
+				retorno += this.posicoes[i][j].getElemento();
 			}
 			retorno += "\n";
 		}
