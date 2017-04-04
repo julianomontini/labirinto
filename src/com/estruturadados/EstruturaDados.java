@@ -57,11 +57,15 @@ public abstract class EstruturaDados<T> {
     	return this.posicao;
     }
 
-    public T clonarObjeto(T objeto) throws Exception{
+    protected T clonarObjeto(T objeto){
+    	
     	if(objeto instanceof Cloneable){
-    		Class<?> classe = objeto.getClass();
-    		Method metodo = classe.getMethod("clone", null);
-    		return (T) metodo.invoke(objeto, null);
+    		try{
+    			Class<?> classe = objeto.getClass();
+        		Method metodo = classe.getMethod("clone", null);
+        		return (T) metodo.invoke(objeto, null);
+    		}catch(Exception e){}
+    		
     	}
     	return objeto;
     }
