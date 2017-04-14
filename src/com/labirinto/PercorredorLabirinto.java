@@ -20,11 +20,16 @@ public class PercorredorLabirinto {
 
 	public Labirinto percorrerLabirinto() throws Exception {
 
-		while (haProgressivo(this.atual)) {
-			percorrerProgressivo(jogadasValidas(this.atual));
-		}
+		while (!this.atual.equals(this.labirinto.getSaida())) {
 
-		this.atual.setElemento('*');
+			while (haProgressivo(this.atual)) {
+				percorrerProgressivo(jogadasValidas(this.atual));
+			}
+			this.atual.setElemento('*');
+
+			if (!this.atual.equals(this.labirinto.getSaida()))
+				percorrerRegressivo();
+		}
 
 		return this.labirinto;
 	}
@@ -80,6 +85,20 @@ public class PercorredorLabirinto {
 
 		return jogadas;
 
+	}
+
+	public void percorrerRegressivo() throws Exception {
+		while (!possibilidades.estaVazio() && possibilidades.recuperar().estaVazio()
+				&& !this.atual.equals(this.labirinto.getEntrada())) {
+			Coordenada c = this.caminho.recuperarERemover();
+			this.labirinto.getPosicoes()[c.linha][c.coluna].setElemento('P');
+			this.possibilidades.remover();
+		}
+
+		if (!possibilidades.recuperar().estaVazio()) {
+			this.atual.setElemento('P');
+			this.atual = possibilidades.recuperar().recuperarERemover();
+		}
 	}
 
 }
