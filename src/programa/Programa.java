@@ -1,14 +1,14 @@
 package programa;
 
 import com.labirinto.Labirinto;
+import com.labirinto.PercorredorLabirinto;
 
 public class Programa {
 
 	public static void main(String[] args) {
 		try {
-			Labirinto lab = new Labirinto("labirinto.txt");
-			System.out.println(lab.getEntrada());
-			System.out.println(lab.getSaida());
+			PercorredorLabirinto pl = new PercorredorLabirinto(new Labirinto("labirinto.txt"));
+			pl.percorrerLabirinto();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
