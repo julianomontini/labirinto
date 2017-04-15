@@ -20,16 +20,21 @@ public class PercorredorLabirinto {
 
 	public Labirinto percorrerLabirinto() throws Exception {
 
-		while (!this.atual.equals(this.labirinto.getSaida())) {
-
+		do {
 			while (haProgressivo(this.atual)) {
 				percorrerProgressivo(jogadasValidas(this.atual));
 			}
 			this.atual.setElemento('*');
 
-			if (!this.atual.equals(this.labirinto.getSaida()))
+			if (!this.atual.equals(this.labirinto.getSaida()) && !this.atual.equals(this.labirinto.getEntrada()))
 				percorrerRegressivo();
-		}
+		} while (!this.atual.equals(this.labirinto.getSaida()) && !this.atual.equals(this.labirinto.getEntrada()));
+
+		if (this.atual.linha == this.labirinto.getEntrada().linha
+				&& this.atual.coluna == this.labirinto.getEntrada().coluna)
+			throw new Exception("O labirinto não possui solução");
+
+		this.atual.setElemento('*');
 
 		return this.labirinto;
 	}
@@ -87,7 +92,7 @@ public class PercorredorLabirinto {
 
 	}
 
-	public void percorrerRegressivo() throws Exception {
+	private void percorrerRegressivo() throws Exception {
 		while (!possibilidades.estaVazio() && possibilidades.recuperar().estaVazio()
 				&& !this.atual.equals(this.labirinto.getEntrada())) {
 			Coordenada c = this.caminho.recuperarERemover();
@@ -95,7 +100,7 @@ public class PercorredorLabirinto {
 			this.possibilidades.remover();
 		}
 
-		if (!possibilidades.recuperar().estaVazio()) {
+		if (!possibilidades.estaVazio() && !possibilidades.recuperar().estaVazio()) {
 			this.atual.setElemento('P');
 			this.atual = possibilidades.recuperar().recuperarERemover();
 		}
