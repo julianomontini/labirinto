@@ -2,6 +2,10 @@ package com.estruturadados;
 
 public class Pilha<T> extends EstruturaDados<T> {
     
+	/**
+	 * Cria uma nova pilha com o tamanho passado como parametro
+	 * @param tamanhoPilha
+	 */
 	public Pilha(int tamanhoPilha) {
             super(tamanhoPilha);
 	}

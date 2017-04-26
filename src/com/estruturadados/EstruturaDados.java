@@ -16,10 +16,25 @@ public abstract class EstruturaDados<T> {
         this.estrutura = new Object[tamanho];
     }
     
+    /**
+     * Recupera um objeto da estrutura de dados
+     * @return Objeto recuperado da estrutura
+     * @throws Exception Caso nao haja elementos na estrutura
+     */
     public abstract T recuperar() throws Exception;
     
+    /**
+     * Guarda um valor na estrutura de dados
+     * @param valor Valor a ser guardado na estrutura de dados
+     * @throws Exception Caso a estrutura já esteja cheia ( pode ser ignorado, pois
+     * a esturutra é dinamica )
+     */
     public abstract void adicionar (T valor) throws Exception;
     
+    /**
+     * Remove um elemento da estrutura de dados
+     * @throws Exception Caso não haja mais elementos a serem removidos
+     */
     public abstract void remover() throws Exception; 
     
     /**
@@ -57,6 +72,13 @@ public abstract class EstruturaDados<T> {
     	return this.posicao;
     }
 
+    /**
+     * Clona o objeto passado, caso possivel.
+     * O metodo tenta invocar o metodo clone do objeto passado, caso nao seja possivel, 
+     * o retorno será o proprio objeto passado
+     * @param objeto Objeto modelo a ser clonado
+     * @return Nova instancia do objeto
+     */
     protected T clonarObjeto(T objeto){
     	
     	if(objeto instanceof Cloneable){

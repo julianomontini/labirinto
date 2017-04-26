@@ -13,8 +13,8 @@ public class Coordenada {
 	private Character elemento;
 
 	/**
-	 * Cria coordenadas linha e coluna. As coordenadas criadas serão armazenadas
-	 * em atributos do tipo final int
+	 * Cria coordenadas linha, coluna e elemento. As coordenadas criadas serão armazenadas
+	 * em atributos do tipo final int, o elemento da coordenada é armzenada em um Character
 	 * 
 	 * @param numero
 	 *            linha
@@ -26,7 +26,11 @@ public class Coordenada {
 		this.coluna = coluna;
 		this.elemento = elemento;
 	}
-
+	
+	/**
+	 * Construtor de copia de coordenada
+	 * @param c Coordenada a ser copiada
+	 */
 	public Coordenada(Coordenada c) {
 		this.linha = c.linha;
 		this.coluna = c.coluna;
@@ -84,11 +88,19 @@ public class Coordenada {
 		hash = hash * 31 + elemento.hashCode();
 		return hash;
 	}
-
+	
+	/**
+	 * Retorna o Character armazenado na coordenada
+	 * @return Character armazenado na coordenada
+	 */
 	public Character getElemento() {
 		return elemento;
 	}
 
+	/**
+	 * Atualiza o valor do Character na coordenada atual
+	 * @param elemento Character a ser colocado na coordenada atual
+	 */
 	public void setElemento(Character elemento) {
 		this.elemento = elemento;
 	}
