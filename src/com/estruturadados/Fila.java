@@ -2,6 +2,9 @@ package com.estruturadados;
 
 public class Fila<T> extends EstruturaDados<T> {
    
+	/** Cria uma nova fila com tamanho igual ao passado no parametro
+	 * @param tamanho Tamanho da estrutura
+	 */
     public Fila(int tamanho){   
         super(tamanho);
     }

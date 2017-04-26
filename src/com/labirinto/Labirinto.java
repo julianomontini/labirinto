@@ -28,6 +28,12 @@ public class Labirinto {
 		
 	}
 	
+	/**
+	 * Carrega um labirinto de acordo com o caminho passado e verifica se ele é valido.
+	 * @param caminho Caminho aonde o labirinto está
+	 * @return Labirinto instanciado e validado
+	 * @throws Exception Caso o arquivo nao exista ou caso nao seja um labirinto valido
+	 */
 	private Coordenada[][] carregaLabirinto(String caminho)throws Exception{
 		
 		List<String> linhasLabirinto = new ArrayList<String>();
@@ -67,22 +73,42 @@ public class Labirinto {
 		return retorno;
 	}
 	
+	/**
+	 * Getter de Array de coordenadas referente ao labirinto
+	 * @return Array de coordenadas
+	 */
 	public Coordenada[][] getPosicoes() {
 		return posicoes;
 	}
 
+	/**
+	 * Quantidade de linhas do labirinto definida no momento da criação
+	 * @return quantidade de linhas do labirinto
+	 */
 	public int getQuantidadeLinhas() {
 		return quantidadeLinhas;
 	}
 
+	/**
+	 * Quantidade de colunas definida no momento da criação
+	 * @return quantidade de colunas do labirinto
+	 */
 	public int getQuantidadeColunas() {
 		return quantidadeColunas;
 	}
 	
+	/**
+	 * Getter para entrada do labirinto
+	 * @return Coordenada referente a entrada do labirinto
+	 */
 	public Coordenada getEntrada() {
 		return entrada;
 	}
 
+	/**
+	 * Getter para saida do labirinto
+	 * @return Coordenada referente a saida do labirinto
+	 */
 	public Coordenada getSaida() {
 		return saida;
 	}

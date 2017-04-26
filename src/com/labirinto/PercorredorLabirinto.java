@@ -11,6 +11,10 @@ public class PercorredorLabirinto {
 	private PilhaDinamica<Fila<Coordenada>> possibilidades;
 	private Coordenada atual;
 
+	/**
+	 * Instancia um novo percorredor de labirinto
+	 * @param lab Labirinto a ser percorrido
+	 */
 	public PercorredorLabirinto(Labirinto lab) {
 		this.labirinto = lab;
 		this.caminho = new PilhaDinamica<Coordenada>();
@@ -18,6 +22,11 @@ public class PercorredorLabirinto {
 		this.atual = lab.getEntrada();
 	}
 
+	/**
+	 * Percorre o labirinto que foi passado no construtor
+	 * @return Labirinto percorrido
+	 * @throws Exception Caso labirinto nao tenha solucao
+	 */
 	public Labirinto percorrerLabirinto() throws Exception {
 
 		do {
