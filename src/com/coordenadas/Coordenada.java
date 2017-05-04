@@ -16,10 +16,9 @@ public class Coordenada {
 	 * Cria coordenadas linha, coluna e elemento. As coordenadas criadas serão armazenadas
 	 * em atributos do tipo final int, o elemento da coordenada é armzenada em um Character
 	 * 
-	 * @param numero
-	 *            linha
-	 * @param numero
-	 *            coluna
+	 * @param linha numero da linha
+	 * @param coluna numero da coluna
+	 * @param elemento elemento da posicao
 	 */
 	public Coordenada(int linha, int coluna, Character elemento) {
 		this.linha = linha;
@@ -45,14 +44,6 @@ public class Coordenada {
 		return "Valor: " + elemento + " em: " + "(" + this.linha + "," + this.coluna + ")";
 	}
 
-	/**
-	 * Faz comparação profunda da classe coordenada. Compara os atributos linha
-	 * e coluna.
-	 * 
-	 * @param Object
-	 *            objeto a ser comparado.
-	 * @return igualdade entre esse objeto e objeto recebido.
-	 */
 	@Override
 	public boolean equals(Object o) {
 		if (o == null)

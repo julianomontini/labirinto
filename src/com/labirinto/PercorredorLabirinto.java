@@ -114,5 +114,45 @@ public class PercorredorLabirinto {
 			this.atual = possibilidades.recuperar().recuperarERemover();
 		}
 	}
+	
+	@Override
+	public String toString(){
+		String retorno = this.labirinto.toString();
+		retorno += "Atual: " + this.atual.toString();
+		
+		return retorno;
+	}
+	
+	@Override
+	public boolean equals(Object o){
+		if(o == null)
+			return false;
+		if(o == this)
+			return true;
+		if(o.getClass() != this.getClass())
+			return false;
+		
+		PercorredorLabirinto comparado = (PercorredorLabirinto) o;
+		
+		if(!comparado.possibilidades.equals(this.possibilidades))
+			return false;
+		if(!comparado.caminho.equals(this.caminho))
+			return false;
+		if(!comparado.atual.equals(this.atual))
+			return false;
+		
+		return true;
+	}
+	
+	@Override
+	public int hashCode(){
+		int retorno = 777;
+		
+		retorno = retorno*31 + this.possibilidades.hashCode();
+		retorno = retorno*31 + this.caminho.hashCode();
+		retorno = retorno*31 + this.atual.hashCode();
+		
+		return retorno;
+	}
 
 }
